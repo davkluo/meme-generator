@@ -1,1 +1,52 @@
-<h1>Placeholder</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meme Generator</title>
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <script src="//kit.fontawesome.com/31bb58186a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h1>Meme Generator</h1>
+  </header>
+
+  <form id="memeForm" action="#">
+    <div>
+      <label for="imgLink">Image URL:</label>
+      <input id="imgLink" type="text" placeholder="Enter the image URL">
+    </div>
+    <div>
+      <label for="topText">Text At Top:</label>
+      <input id="topText" type="text" placeholder="(Optional) Text at the top of the meme">
+    </div>
+    <div>
+      <label for="botText">Text At Bottom:</label>
+      <input id="botText" type="text" placeholder="(Optional) Text at the bottom of the meme">
+    </div>
+    <input type="submit" value="Generate Meme">
+  </form>
+
+  <div id="previewSection">
+    <h1>Meme Preview</h1>
+    <div class="meme-div">
+      <div class="meme-text top-text"></div>
+      <div class="meme-text bot-text"></div>
+      <img class="meme-img" src="" alt="the internet's down">
+    </div>
+  </div>
+
+  <div id="memeSection">
+    <h1>Generated Memes</h1>
+  </div>
+
+  <footer>
+    Delete buttons go here
+  </footer>
+  <script src="/js/script.js"></script>
+</body>
+</html>
