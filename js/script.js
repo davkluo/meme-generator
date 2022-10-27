@@ -32,67 +32,96 @@ function handleInput(evt) {
     case 'imgLink':
       if (isValidImage(evt.target.value)) {
         previewImg.src = evt.target.value;
-      } else {
-        previewImg.src = '';
       }
       break;
 
     case 'topText':
-      previewTopText.innerText = evt.target.value;
+      previewTopText.innerText = evt.target.value.toUpperCase();
       break;
 
     case 'botText':
-      previewBotText.innerText = evt.target.value;
+      previewBotText.innerText = evt.target.value.toUpperCase();
       break;
   }
 }
 
-/** Handle form submission and generate meme */
+function resetGenerator() {
+  memeForm.reset();
+  previewImg.src = "https://via.placeholder.com/600/FFFFFF/?text=Your+Meme+Here";
+  previewTopText.innerText = "";
+  previewBotText.innerText = "";
+
+  let memeTexts = document.querySelectorAll("#previewSection .meme-text");
+  for (let i = 0; i < memeTexts.length; i++) {
+    memeTexts[i].style.color = "";
+    memeTexts[i].style.textShadow = "";
+    fontColorLabel.innerText = "Light";
+  }
+}
+
+/** Handle form submission, reset form, and generate meme */
 function handleSubmit(evt) {
   evt.preventDefault();
-  console.log('form submitted');
 
   if (!isValidImage(imgLink.value)) {
     alert('Please supply a valid image URL');
     return;
   }
 
-  memeForm.reset();
-  console.log('form reset');
   generateMeme();
+  resetGenerator();
 }
 
+/** Generate meme from preview and create delete buttons */
 function generateMeme() {
   let newMeme = previewMeme.cloneNode(true);
-
-  let btnGroup = document.createElement('div');
-  btnGroup.classList.add('btn-group');
-
-  let copyBtn = document.createElement('button');
-  copyBtn.classList.add('copy-btn');
-  copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i>';
-  btnGroup.appendChild(copyBtn);
 
   let delBtn = document.createElement('button');
   delBtn.classList.add('del-btn');
   delBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-  btnGroup.appendChild(delBtn);
-
-  newMeme.appendChild(btnGroup);
-  memeSection.appendChild(newMeme);
-
   delBtn.addEventListener('click', deleteMeme);
+
+  newMeme.appendChild(delBtn);
+  memeSection.appendChild(newMeme);
 }
 
+/** Handle meme delete button event; removes meme */
 function deleteMeme(evt) {
-  let evtParent = evt.target.parentNode;
-  if (evtParent.classList.contains('meme-div')) {
-    evtParent.remove();
-  } else if (evtParent.classList.contains('btn-group')) {
-    evtParent.parentNode.remove();
+  let memeDiv = evt.target;
+  while (!memeDiv.classList.contains('meme-div')) {
+    memeDiv = memeDiv.parentNode;
+  }
+  memeDiv.remove();
+}
+
+/** Handle font color toggle event; toggles from light to dark text */
+function toggleFontColor(evt) {
+  let memeTexts = document.querySelectorAll("#previewSection .meme-text");
+  if (evt.target.checked) {
+    for (let i = 0; i < memeTexts.length; i++) {
+      memeTexts[i].style.color = "#000000";
+      memeTexts[i].style.textShadow = "none";
+      fontColorLabel.innerText = "Dark";
+    }
+  } else {
+    for (let i = 0; i < memeTexts.length; i++) {
+      memeTexts[i].style.color = "";
+      memeTexts[i].style.textShadow = "";
+      fontColorLabel.innerText = "Light";
+    }
   }
 }
 
+/** Handle template image load event; loads image source to preview and URL input */
+function loadTemplate(evt) {
+  if (evt.target.tagName !== "IMG") {
+    return;
+  }
+  imgLink.value = evt.target.src;
+  previewImg.src = evt.target.src;
+}
+
+// Variable declarations for elements we will need to access
 let memeForm;
 let imgLink;
 let previewMeme;
@@ -100,8 +129,12 @@ let previewImg;
 let previewTopText;
 let previewBotText;
 let memeSection;
+let fontColorSwitch;
+let templateList;
+let fontColorLabel;
 
 document.addEventListener("DOMContentLoaded", function() {
+  // Variable assignments for elements we will need to access
   memeForm = document.getElementById("memeForm");
   imgLink = document.getElementById("imgLink");
   previewMeme = document.querySelector("#previewSection .meme-div");
@@ -109,8 +142,13 @@ document.addEventListener("DOMContentLoaded", function() {
   previewTopText = document.querySelector("#previewSection .top-text");
   previewBotText = document.querySelector("#previewSection .bot-text");
   memeSection = document.getElementById("memeSection");
+  fontColorSwitch = document.getElementById("fontColorSwitch");
+  fontColorLabel = document.getElementById("fontColorLabel");
+  templateList = document.getElementById("templateList");
 
   memeForm.addEventListener("input", handleInput);
   memeForm.addEventListener("submit", handleSubmit);
 
+  fontColorSwitch.addEventListener("click", toggleFontColor);
+  templateList.addEventListener("click", loadTemplate);
 });

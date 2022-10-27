@@ -1,15 +1,39 @@
 /* Set font to Poppins for all body content */
 body {
 	font-family: 'Poppins', sans-serif;
+  background-color: #f0f0f0;
+  height: 200vh;
+}
+
+header h1 {
+  background-color: black;
+  color: greenyellow;
 }
 
 h1 {
   text-align: center;
 }
 
+#previewSection, #memeSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
 .meme-div {
+  display: inline-block;
 	position: relative;
 	text-align: center;
+  height: 40vh;
+  max-height: 600px;
+  min-height: 400px;
+}
+
+.meme-img {
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
 }
 
 .meme-text {
@@ -17,6 +41,19 @@ h1 {
 	left: 0;
 	right: 0;
 	margin: 0 auto;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 3rem;
+  color: white;
+  letter-spacing: 1px;
+  text-shadow:2px 2px 0 #000,
+  -2px -2px 0 #000,
+  2px -2px 0 #000,
+  -2px 2px 0 #000,
+  0px 2px 0 #000,
+  2px 0px 0 #000,
+  0px -2px 0 #000,
+  -2px 0px 0 #000,
+  2px 2px 5px #000;
 }
 
 .top-text {
@@ -27,35 +64,104 @@ h1 {
 	bottom: 10px;
 }
 
-.btn-group {
-  display: flex;
+.del-btn {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   visibility: hidden;
-  gap: 15px;
-}
-
-.btn-group button {
-  height: 40px;
-  width: 40px;
+  height: 45px;
+  width: 45px;
   background-color: transparent;
   color: white;
   border: medium solid;
   border-radius: 10px;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  transition: color .5s;
 }
 
-button i {
-  z-index: -2;
-}
-
-.meme-img:hover + .btn-group, .btn-group:hover {
+.meme-img:hover + .del-btn, .del-btn:hover {
   visibility: visible;
 }
 
-.btn-group button:hover {
+.del-btn:hover {
   color: greenyellow;
+}
+
+#fontColorSwitch:checked {
+  background-color: black;
+}
+
+input[type="text"] {
+  height: 35px;
+  border-radius: 0 10px 10px 0px;
+}
+
+input[value="Generate Meme"] {
+  border: thick solid;
+  background-color: transparent;
+  width: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  transition: background-color .5s, color .5s, border-color .5s;
+}
+
+input[value="Generate Meme"]:hover {
+  background-color: black;
+  color: greenyellow;
+  border-color: black;
+}
+
+.template-thumbnails {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.template-thumbnails div {
+  height: 60px;
+  width: auto;
+}
+
+.template-thumbnails img {
+  height: 100%;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+form label {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 210px;
+  height: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: black;
+  color: white;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.form-switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: auto;
+  padding: 15px;
+  background-color: white;
+  border: 1px solid #ced4da;
+  border-radius: 0px 10px 10px 0px;
+  gap: 10px;
+  color: #212529;
+}
+
+.form-switch input {
+  font-size: 1.2rem;
+  margin: 0;
 }
