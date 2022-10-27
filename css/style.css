@@ -21,7 +21,7 @@ form label {
   display: inline-flex;
   justify-content: flex-start;
   align-items: center;
-  width: 210px;
+  min-width: 140px;
   height: 35px;
   padding-left: 10px;
   padding-right: 10px;
