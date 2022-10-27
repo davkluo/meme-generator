@@ -2,19 +2,19 @@
 
 /** Handle input events into the form and update preview accordingly */
 function handleInput(evt) {
-  let targetInput = evt.target.getAttribute('id');
+  let targetInput = evt.target.getAttribute("id");
   switch (targetInput) {
-    case 'imgLink':
+    case "imgLink":
       if (isValidImage(evt.target.value)) {
         previewImg.src = evt.target.value;
       }
       break;
 
-    case 'topText':
+    case "topText":
       previewTopText.innerText = evt.target.value.toUpperCase();
       break;
 
-    case 'botText':
+    case "botText":
       previewBotText.innerText = evt.target.value.toUpperCase();
       break;
   }
@@ -52,7 +52,7 @@ function handleSubmit(evt) {
   evt.preventDefault();
 
   if (!isValidImage(imgLink.value)) {
-    alert('Please supply a valid image URL');
+    alert("Please supply a valid image URL");
     return;
   }
 
@@ -89,10 +89,10 @@ function isValidURL(link) {
 function generateMeme() {
   let newMeme = previewMeme.cloneNode(true);
 
-  let delBtn = document.createElement('button');
-  delBtn.classList.add('del-btn');
+  let delBtn = document.createElement("button");
+  delBtn.classList.add("del-btn");
   delBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-  delBtn.addEventListener('click', deleteMeme);
+  delBtn.addEventListener("click", deleteMeme);
 
   newMeme.appendChild(delBtn);
   memeSection.appendChild(newMeme);
@@ -116,7 +116,7 @@ function resetGenerator() {
 /** Handle meme delete button event; removes meme */
 function deleteMeme(evt) {
   let memeDiv = evt.target;
-  while (!memeDiv.classList.contains('meme-div')) {
+  while (!memeDiv.classList.contains("meme-div")) {
     memeDiv = memeDiv.parentNode;
   }
   memeDiv.remove();
