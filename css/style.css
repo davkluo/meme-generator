@@ -2,18 +2,96 @@
 body {
 	font-family: 'Poppins', sans-serif;
   background-color: #f0f0f0;
-  height: 200vh;
+  height: 150vh;
 }
 
+/* Center headings */
+h1 {
+  text-align: center;
+}
+
+/* Style page header */
 header h1 {
   background-color: black;
   color: greenyellow;
 }
 
-h1 {
-  text-align: center;
+/* Form label style */
+form label {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 210px;
+  height: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: black;
+  color: white;
+  border-radius: 10px 0px 0px 10px;
 }
 
+/* Input text box style */
+input[type="text"] {
+  height: 35px;
+  border-radius: 0 10px 10px 0px;
+}
+
+/* Template thumbnails container style */
+.template-thumbnails {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Template thumbnail wrapper for sizing */
+.template-thumbnails div {
+  height: 60px;
+  width: auto;
+}
+
+/* Template thumbnail sizing and style */
+.template-thumbnails img {
+  height: 100%;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+/* Toggle switch wrapper div style */
+.form-switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: auto;
+  padding: 15px;
+  background-color: white;
+  border: 1px solid #ced4da;
+  border-radius: 0px 10px 10px 0px;
+  gap: 10px;
+  color: #212529;
+}
+
+/* Enlarge toggle switch icon */
+.form-switch input {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* Submit button style */
+input[value="Generate Meme"] {
+  border: thick solid;
+  background-color: transparent;
+  width: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  transition: background-color .5s, color .5s, border-color .5s;
+}
+
+/* Preview and meme section style */
 #previewSection, #memeSection {
   display: flex;
   flex-direction: column;
@@ -21,6 +99,7 @@ h1 {
   gap: 10px;
 }
 
+/* Meme div style */
 .meme-div {
   display: inline-block;
 	position: relative;
@@ -30,12 +109,14 @@ h1 {
   min-height: 400px;
 }
 
+/* Meme image style */
 .meme-img {
   height: 100%;
   object-fit: contain;
   border-radius: 10px;
 }
 
+/* Meme text style */
 .meme-text {
 	position: absolute;
 	left: 0;
@@ -56,14 +137,17 @@ h1 {
   2px 2px 5px #000;
 }
 
+/* Top meme text position */
 .top-text {
 	top: 10px;
 }
 
+/* Bottom meme text position */
 .bot-text {
 	bottom: 10px;
 }
 
+/* Meme delete button style */
 .del-btn {
   position: absolute;
   top: 50%;
@@ -73,95 +157,40 @@ h1 {
   visibility: hidden;
   height: 45px;
   width: 45px;
-  background-color: transparent;
-  color: white;
-  border: medium solid;
+  background-color: white;
+  color: black;
+  border: none;
   border-radius: 10px;
   font-size: 1.5rem;
-  transition: color .5s;
+  transition: color .25s;
+  box-shadow: 0 0 0 2px rgba(160, 160, 160, 0.25);
 }
 
-.meme-img:hover + .del-btn, .del-btn:hover {
-  visibility: visible;
-}
-
-.del-btn:hover {
-  color: greenyellow;
-}
-
+/* Font color toggle switch checked color change */
 #fontColorSwitch:checked {
   background-color: black;
 }
 
-input[type="text"] {
-  height: 35px;
-  border-radius: 0 10px 10px 0px;
-}
-
-input[value="Generate Meme"] {
-  border: thick solid;
-  background-color: transparent;
-  width: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-  height: 50px;
-  border-radius: 25px;
-  font-size: 1.2rem;
-  transition: background-color .5s, color .5s, border-color .5s;
-}
-
+/* Submit button hover effect */
 input[value="Generate Meme"]:hover {
   background-color: black;
   color: greenyellow;
   border-color: black;
 }
 
-.template-thumbnails {
-  display: flex;
-  justify-content: flex-start;
-  gap: 10px;
-  flex-wrap: wrap;
+/* Meme delete button appear effect */
+.meme-img:hover + .del-btn, .del-btn:hover {
+  visibility: visible;
 }
 
-.template-thumbnails div {
-  height: 60px;
-  width: auto;
+/* Meme delete button hover effect */
+.del-btn:hover {
+  color: greenyellow;
 }
 
-.template-thumbnails img {
-  height: 100%;
-  object-fit: contain;
-  border-radius: 5px;
-}
-
-form label {
-  display: inline-flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 210px;
-  height: 35px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: black;
-  color: white;
-  border-radius: 10px 0px 0px 10px;
-}
-
-.form-switch {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 35px;
-  width: auto;
-  padding: 15px;
-  background-color: white;
-  border: 1px solid #ced4da;
-  border-radius: 0px 10px 10px 0px;
-  gap: 10px;
-  color: #212529;
-}
-
-.form-switch input {
-  font-size: 1.2rem;
-  margin: 0;
+/* Make form text slightly smaller on small screens */
+@media (max-width: 576px) {
+  form label, form span, form input[type="text"] {
+    font-size: 0.9rem;
+  }
 }
