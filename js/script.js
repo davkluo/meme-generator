@@ -27,8 +27,6 @@ function isValidURL(link) {
 
 /** Handle input events into the form and update preview accordingly */
 function handleInput(evt) {
-  console.log('input received');
-  console.log(evt.target.getAttribute('id'));
   let targetInput = evt.target.getAttribute('id');
   switch (targetInput) {
     case 'imgLink':
@@ -46,18 +44,12 @@ function handleInput(evt) {
     case 'botText':
       previewBotText.innerText = evt.target.value;
       break;
-
-    case 'midText':
-      break;
-
-    default:
-      break;
   }
 }
 
 /** Handle form submission and generate meme */
-function handleSubmit(e) {
-  e.preventDefault();
+function handleSubmit(evt) {
+  evt.preventDefault();
   console.log('form submitted');
 
   if (!isValidImage(imgLink.value)) {
@@ -67,6 +59,38 @@ function handleSubmit(e) {
 
   memeForm.reset();
   console.log('form reset');
+  generateMeme();
+}
+
+function generateMeme() {
+  let newMeme = previewMeme.cloneNode(true);
+
+  let btnGroup = document.createElement('div');
+  btnGroup.classList.add('btn-group');
+
+  let copyBtn = document.createElement('button');
+  copyBtn.classList.add('copy-btn');
+  copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i>';
+  btnGroup.appendChild(copyBtn);
+
+  let delBtn = document.createElement('button');
+  delBtn.classList.add('del-btn');
+  delBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+  btnGroup.appendChild(delBtn);
+
+  newMeme.appendChild(btnGroup);
+  memeSection.appendChild(newMeme);
+
+  delBtn.addEventListener('click', deleteMeme);
+}
+
+function deleteMeme(evt) {
+  let evtParent = evt.target.parentNode;
+  if (evtParent.classList.contains('meme-div')) {
+    evtParent.remove();
+  } else if (evtParent.classList.contains('btn-group')) {
+    evtParent.parentNode.remove();
+  }
 }
 
 let memeForm;

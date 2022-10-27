@@ -12,7 +12,6 @@ h1 {
 	text-align: center;
 }
 
-
 .meme-text {
 	position: absolute;
 	left: 0;
@@ -28,17 +27,35 @@ h1 {
 	bottom: 10px;
 }
 
-.del-btn {
+.btn-group {
+  display: flex;
   position: absolute;
-  height: 30px;
-  width: 30px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   visibility: hidden;
+  gap: 15px;
 }
 
-.meme-img:hover + .del-btn, .del-btn:hover {
+.btn-group button {
+  height: 40px;
+  width: 40px;
+  background-color: transparent;
+  color: white;
+  border: medium solid;
+  border-radius: 10px;
+  font-size: 1.2rem;
+}
+
+button i {
+  z-index: -2;
+}
+
+.meme-img:hover + .btn-group, .btn-group:hover {
   visibility: visible;
+}
+
+.btn-group button:hover {
+  color: greenyellow;
 }
