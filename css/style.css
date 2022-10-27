@@ -1,0 +1,44 @@
+/* Set font to Poppins for all body content */
+body {
+	font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+.meme-div {
+	position: relative;
+	text-align: center;
+}
+
+
+.meme-text {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+
+.top-text {
+	top: 10px;
+}
+
+.bot-text {
+	bottom: 10px;
+}
+
+.del-btn {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  visibility: hidden;
+}
+
+.meme-img:hover + .del-btn, .del-btn:hover {
+  visibility: visible;
+}
